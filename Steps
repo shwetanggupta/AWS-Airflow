@@ -1,0 +1,10 @@
+As part of my first AWS and airflow project these are following steps I did to create the csv through an API
+1. Created an EC2 linux instance of small size that was costing me around .0023 $ per hour. I first used the micro size but I was not able to run airflow due to size issue.
+2. Connected my EC2 instance to local VS code to write down all my codes there.
+3. Installed all the dependencies in EC2 instance. 
+4. Extracted Airflow credentials from CLI to conncet to Airflow locally. 
+5. Extracted API from a website to extract the data.
+6. created the DAG in VS Code and scheduled it. 
+7. Created a python code to transform the data and called the function in the DAG
+8. Created a CSV file and dumped the transformed data into CSV. 
+9. PLaced the file in S3 bucket through DAG.
