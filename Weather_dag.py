@@ -64,13 +64,13 @@ with DAG('weather_dag',
         default_args=default_args,
         schedule_interval='@daily',
         catchup=False) as dag: 
-
+#Check whether the API is ready or not
         is_weather_api_ready=HttpSensor(
             task_id='is_weather_api_ready',
             http_conn_id='weathermap_api',
             endpoint='/data/2.5/weather?q=hyderabad&appid=4f0813ed217fca4a456b1494dc176688'
         )
-
+#Extract data from API
         extract_weather_data= SimpleHttpOperator(
         task_id='extract_weather_data',
         http_conn_id='weathermap_api',
@@ -79,7 +79,7 @@ with DAG('weather_dag',
         response_filter= lambda r: json.loads(r.text),
         log_response=True
         )
-
+#Transform the data into readable format with the help of python function
         transform_load_weather_data= PythonOperator(
             task_id='transform_load_weather_data',
             python_callable=transform_load_data
